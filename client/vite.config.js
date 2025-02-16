@@ -3,25 +3,26 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     nodePolyfills({
-      include: ["buffer"],
+      include: ["buffer", "util"], // Add util here
     }),
   ],
   resolve: {
     alias: {
       buffer: "buffer/",
+      util: "util/",
     },
+  },
+  define: {
+    global: "globalThis",
   },
   optimizeDeps: {
     esbuildOptions: {
-      define: {
-        global: "globalThis",
-      },
+      target: "es2020",
     },
   },
 });

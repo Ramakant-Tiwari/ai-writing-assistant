@@ -5,13 +5,13 @@ import ai from "./images/ai.png";
 
 const root = createRoot(document.getElementById("root"));
 
+console.log("Privy App ID:", import.meta.env.VITE_PRIVY_APP_ID); // Verify in console
+
 root.render(
   <PrivyProvider
-    appId="cm7367t9602cp13vt0qodsam6"
+    appId={String(import.meta.env.VITE_PRIVY_APP_ID)} // Explicit string conversion
     config={{
-      // Display email and wallet as login methods
       loginMethods: ["email", "google", "twitter", "github"],
-      // Customize Privy's appearance in your app
       appearance: {
         theme: "dark",
         accentColor: "#676FFF",
